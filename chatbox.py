@@ -1,5 +1,6 @@
 # Use this to print everyone's messages.
 import chat_server
+import json
 
 
 def _make_box():
@@ -10,9 +11,13 @@ def _make_box():
 
 def main(reader):
     while True:
-        received = reader.receive()
-        if received == '$#AS!@FE':
-            break
+        received = reader.receive() # Recieves JSON Data about stuff
+
+        chat_data = json.loads(received)
+
+        for chat in chat_data:
+            print(chat["username"] + ": " + chat["message"])
+
     reader.close()
 
 
