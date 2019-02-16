@@ -18,7 +18,9 @@ class Chat {
   }
 }
 
-function writeChatToListeners(message, username = "SERVER") {
+function writeChatToListeners(message, username) {
+  username = username || 'SERVER';
+  
   let chat = new Chat(message, username);
   messages.push(chat);
 

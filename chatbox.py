@@ -16,10 +16,8 @@ def main(reader):
         chat_data = json.decode(receive)
 
         for chat in chat_data:
-            if chat["username"]:
-                print(chat["username"] + ": ")
-
-            print(chat["message"])
+            print(chat["username"] + ": " + chat["message"])
+            
     reader.close()
 
 
