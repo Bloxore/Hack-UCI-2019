@@ -13,7 +13,6 @@ def main(reader):
         received = reader.receive()
         if received == '$#AS!@FE':
             break
-        print(received)
     reader.close()
 
 
