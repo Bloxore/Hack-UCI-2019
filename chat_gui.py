@@ -60,10 +60,14 @@ class gui():
                 
             return
     def reads(self):
-        self.viewer.insert(tk.END , self.connection.receive())
-        self.viewer.insert(tk.END , '\n')
-        self.viewer.yview_moveto( 1 )
-        self.mainbox.after(100,update)
+        while True:
+            h = self.connection.receive()
+            if h == '':
+                return
+            self.viewer.insert(tk.END , h)
+            self.viewer.insert(tk.END , '\n')
+            self.viewer.yview_moveto( 1 )
+            self.mainbox.after(100,update)
 
 
     def update(self, message:str):
