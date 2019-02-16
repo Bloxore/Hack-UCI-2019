@@ -15,8 +15,10 @@ class Connection:
     def receive(self):
         return self.in_file.readline()[:-1]
 
-    def first_message(self, username:str):
-        self.send('USER ' + username)
+    def first_message(self, username:str = 'LISTENER'):
+        if username  != 'LISTENER':
+            username = 'USER' + username
+        self.send(username)
         return self.receive()
 
     def close(self):

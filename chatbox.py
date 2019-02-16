@@ -4,7 +4,9 @@ import chat_server
 
 def _make_box():
     '''Establishes a read-only connection with the server.'''
-    return chat_server.create_connection_obj()
+    the_connection = chat_server.create_connection_obj()
+    the_connection.first_message('LISTENER')
+    return the_connection
 
 def main(reader):
     while True:
