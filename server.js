@@ -43,7 +43,7 @@ const server = net.createServer((socket) => {
           listeners.splice(i, 1);
         }
       }
-      console.log("Removed listener.")
+      console.log("Removed listener. There are " + listeners.length + " listeners.")
     } else {
       console.log("User " + username + " has left.");
     }
