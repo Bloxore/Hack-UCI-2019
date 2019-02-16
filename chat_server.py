@@ -4,16 +4,9 @@ import socket
 class Connection:
     def __init__( self , sock )
         self.sock = sock
-        self.in_file = None
-        self.out_file = None
-
-    def viewer_connection( self ):
-        self.in_file = self.sock.makefile('r')
-            
-
-    def messager_connection( self ):
-        self.viewer_connection()
         self.out_file = self.sock.makefile('w')
+        self.in_file = self.sock.makefile('r')
+
 
     def send(self, message:str):
         self.out_file.write(message)

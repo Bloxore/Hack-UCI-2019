@@ -4,9 +4,8 @@ import chat_server
 
 
 
-def start_up():
+def start_up(username):
     da_connection = chat_server.create_connection_obj()
-    da_connection.messager_connection()
 
     da_connection.first_message(chat_input.user_name())
     
@@ -27,4 +26,4 @@ def main(username:str, da_connection: chat_server.Connection):
 
 
 if __name__ == "__main__":
-
+    main(
