@@ -16,8 +16,6 @@ const server = net.createServer((socket) => {
   socket.on("data", (data) => {
     if (data.toString() == "LISTENER") {
       // Don't establish user
-      socket.write("Welcome listener.\r\n");
-
       // TODO: Remove sockets from list on exit
       socket.id = listenerID++;
       listeners.push(socket);
