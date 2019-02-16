@@ -20,7 +20,7 @@ class Chat {
 
 function writeChatToListeners(message, username) {
   username = username || 'SERVER';
-  
+
   let chat = new Chat(message, username);
   messages.push(chat);
 
@@ -39,14 +39,14 @@ const server = net.createServer((socket) => {
   console.log("client connected");
 
   socket.on("data", (data) => {
-    if (data.toString() == "LISTENER") {
-      // Don't establish user
-      // TODO: Remove sockets from list on exit
+    if (data.toString().split(" ")[0] == "USER") {
+
+      // Establish all users as listeners
       socket.id = listenerID++;
       socket.chat_type = "listener";
       listeners.push(socket);
-    }
-    else if (data.toString().split(" ")[0] == "USER") {
+
+
       let userData = data.toString().split(" ");
       username = "";
       for (let i = 1; i< userData.length; i++) {
