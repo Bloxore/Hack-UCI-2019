@@ -14,6 +14,9 @@ class Connection:
     def receive(self):
         return self.readline()[:-1]
 
+    def first_message(username:str):
+        self.send('HELLO, I AM ' + username)
+
 
 
 
