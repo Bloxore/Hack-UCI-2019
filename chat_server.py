@@ -1,5 +1,8 @@
 import socket
 
+HOST = '35.235.78.32'
+PORT = 4000
+
 
 class Connection:
     def __init__( self , sock ):
@@ -17,10 +20,8 @@ class Connection:
         print(received)
         return received
 
-    def first_message(self, username:str = 'LISTENER'):
-        if username  != 'LISTENER':
-            username = 'USER ' + username
-        self.send(username)
+    def first_message(self, username):
+        self.send('USER ' + username)
         return self.receive()
 
     def close(self):
@@ -33,8 +34,8 @@ class Connection:
 
 
 
-def create_connection_obj( host:str ='127.0.0.1', port:int = 3000)-> Connection:
+def create_connection_obj()-> Connection:
     '''Constructs a Connection object.'''
     sock = socket.socket()
-    sock.connect( ( host , port ) )
+    sock.connect( ( HOST , PORT ) )
     return Connection( sock )

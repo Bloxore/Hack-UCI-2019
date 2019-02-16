@@ -1,7 +1,9 @@
+'use strict';
+
 const net = require('net')
 
-const hostname = '127.0.0.1';
-const port = 3000
+const hostname = '10.168.0.2';
+const port = 4000
 
 let listeners = [];
 let listenerID = 0;
@@ -18,6 +20,7 @@ const server = net.createServer((socket) => {
       // Don't establish user
       // TODO: Remove sockets from list on exit
       socket.id = listenerID++;
+      socket.chat_type = "listener";
       listeners.push(socket);
     }
     else if (data.toString().split(" ")[0] == "USER") {
@@ -34,7 +37,16 @@ const server = net.createServer((socket) => {
   })
 
   socket.on("close", () => {
-    console.log("User " + username + " has left.");
+    if (socket.chat_type && socket.chat_type == "listener") {
+      for (let i = 0; i < listeners.length; i++) {
+        if (listeners[i].id == socket.id) {
+          listeners.splice(i, 1);
+        }
+      }
+      console.log("Removed listener. There are " + listeners.length + " listeners.")
+    } else {
+      console.log("User " + username + " has left.");
+    }
   })
 
   socket.on("error", () => {
