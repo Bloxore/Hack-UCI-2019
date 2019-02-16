@@ -1,7 +1,7 @@
 import socket
 import json
 
-HOST = '35.235.78.32'
+HOST = 'abruptcow.tech'
 PORT = 4000
 
 
@@ -18,21 +18,21 @@ class Connection:
 
 
     def receive(self):
-        received = self.in_file.readline()     # Recieves JSON Data about stuff
-        if type(received) == str:
-            return received[:-1]
-        print(type(received))
+        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+            
         chat_data = json.loads(received)
-
-        reader.close()
-
-        return '\n'.join([chat["username"] + ": " + chat["message"] for chat in chat_data])
+            
+        l = []
+        for chat in chat_data:
+            print(chat["username"] + ": " + chat["message"])
+            l.append(chat["username"] + ": " + chat["message"])
+        return '\n'.join(l)
 
     
     
     def first_message(self, username):
         self.send('USER ' + username)
-        return self.receive()
+        return self.in_file.readline()
 
     def close(self):
         if self.in_file != None:

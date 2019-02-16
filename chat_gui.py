@@ -36,22 +36,30 @@ class gui():
         self.scroller.config( command=self.viewer.yview )
         self.viewer.config( yscrollcommand=self.scroller.set )
 
+        
+
         # binds keyboard shortcuts to send messsage.
         self.mainbox.bind('<Return>' , self.get_message_to_send)
         self.button.bind('<Button-1>' , self.get_message_to_send)
-
-            
+        
+        self.update(self.connection.receive())
+        
         self.message = ''
         self.mainbox.mainloop()
      
+        while True:
+            self.update(self.connection.receive())
     
     def get_message_to_send(self,event):
+
         s = self.message_box.get()
         if s != '':
             self.message_box.delete(0, tk.END)
             self.message = s
+            
             sendthing(s, self)
-            return s
+                
+            return
 
     def update(self, message:str):
             self.viewer.insert(tk.END , message)
@@ -65,11 +73,5 @@ def sendthing(message, the_box):
     the_box.connection.send(message)
     received = the_box.connection.receive()
     the_box.update(received)
-    return received
 
    
-    
-
-
-
-
