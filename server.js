@@ -1,7 +1,7 @@
 const net = require('net')
 
-const hostname = '127.0.0.1';
-const port = 3000
+const hostname = '35.235.78.32';
+const port = 22
 
 let listeners = [];
 let listenerID = 0;
