@@ -1,4 +1,7 @@
 import filetester
+import tkinter as tk
+from tkinter import filedialog
+
 def user_name():
     return input("Insert user name?:  ")
 def chat():
@@ -8,6 +11,8 @@ def emoji():
 def picture():
     filetester.checker(input("Insert an image: "))
 def file():
-    return input("Insert a file: ")
+    root = tk.Tk()
+    root.withdraw()
+    return filedialog.askopenfilename()
 def nickname():
     return input("Insert nickname?: ")
