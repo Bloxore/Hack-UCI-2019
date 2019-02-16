@@ -1,4 +1,8 @@
-from PIL import Image
+HELLO = None
+try:
+    from PIL import Image
+except:
+    HELLO = 'image failed.'
 
 def user_name():
     return input("Insert user name?:  ")
@@ -7,8 +11,9 @@ def chat():
 def emoji():
     return input("Insert an emoji: ")
 def picture():
-    img = Image.open(input("Insert an image: "))
-    img.show()
+    if HELLO != 'image failed':
+        img = Image.open(input("Insert an image: "))
+        img.show()
 def file():
     return input("Insert a file: ")
 def nickname():

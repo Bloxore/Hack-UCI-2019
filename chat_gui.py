@@ -44,7 +44,6 @@ class gui():
         s = self.message_box.get()
         if s != '':
             self.message_box.delete(0, tk.END)
-            self.update(s)
             return s
 
     def update(self, message:str):

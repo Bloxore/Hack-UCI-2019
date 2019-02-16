@@ -9,16 +9,16 @@ def _make_box():
     the_connection.send('LISTENER')
     return the_connection
 
-def main(reader):
-    while True:
-        received = reader.receive() # Recieves JSON Data about stuff
+def receive(reader):
+    received = reader.receive() # Recieves JSON Data about stuff
 
-        chat_data = json.loads(received)
-
-        for chat in chat_data:
-            print(chat["username"] + ": " + chat["message"])
-
+    chat_data = json.loads(received)
+    
     reader.close()
+
+    for chat in chat_data:
+        return chat["username"] + ": " + chat["message"]
+
 
 
 
