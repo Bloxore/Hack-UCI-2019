@@ -28,6 +28,9 @@ const server = net.createServer((socket) => {
       username = "";
       for (let i = 1; i< userData.length; i++) {
         username += userData[i];
+        if (i < userData.length - 1) {
+          username += "_";
+        }
       }
       socket.write("WELCOME! " + username + "\r\n")
       for (let i = 0; i < listeners.length; i++) {
