@@ -22,7 +22,7 @@ class Connection:
         return received
 
     def receive(self):
-        received = self.sock._receive() # Recieves JSON Data about stuff
+        received = self._receive() # Recieves JSON Data about stuff
 
         chat_data = json.loads(received)
 

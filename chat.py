@@ -19,7 +19,7 @@ def main(username:str, da_connection: chat_server.Connection):
         if message == 'QUIT':
             break
         da_connection.send(message)
-        the_box.update(chatbox.receive(da_connection))
+        the_box.update(chatbox.update(da_connection.receive()))
 
     da_connection.close()
 
