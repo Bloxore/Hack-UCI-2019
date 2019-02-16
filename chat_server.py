@@ -2,26 +2,33 @@ import socket
 
 
 class Connection:
-    def __init__( self , sock )
+    def __init__( self , sock ):
         self.sock = sock
-
-    def viewer_connection( self ):
-        self.in_file = self.sock.makefile('r')
-            
-
-    def messager_connection( self ):
-        self.viewer_connection()
         self.out_file = self.sock.makefile('w')
+        self.in_file = self.sock.makefile('r')
+
 
     def send(self, message:str):
         self.out_file.write(message)
         self.out_file.flush()
 
     def receive(self):
-        return self.readline()[:-1]
+        received = self.in_file.readline()[:-1]
+        print(received)
+        return received
 
-    def first_message(username:str):
-        self.send('HELLO, I AM ' + username)
+    def first_message(self, username:str = 'LISTENER'):
+        if username  != 'LISTENER':
+            username = 'USER ' + username
+        self.send(username)
+        return self.receive()
+
+    def close(self):
+        if self.in_file != None:
+            self.in_file.close()
+        if self.out_file != None:
+            self.out_file.close()
+
 
 
 
