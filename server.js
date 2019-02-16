@@ -3,10 +3,31 @@
 const net = require('net')
 
 const hostname = '10.168.0.2';
+//const hostname = 'localhost';
 const port = 4000
 
 let listeners = [];
 let listenerID = 0;
+
+let messages = [];
+
+class Chat {
+  constructor(message, username) {
+    this.message =  message;
+    this.username = username;
+  }
+}
+
+function writeChatToListeners(message, username = "SERVER") {
+  let chat = new Chat(message, username);
+  messages.push(chat);
+
+  let rawOutput = JSON.stringify(messages);
+
+  for (let i = 0; i < listeners.length; i++) {
+    listeners[i].write(rawOutput + "\r\n");
+  }
+}
 
 const server = net.createServer((socket) => {
 
@@ -32,17 +53,15 @@ const server = net.createServer((socket) => {
           username += "_";
         }
       }
+      // For individual users only!
       socket.write("WELCOME! " + username + "\r\n")
-      for (let i = 0; i < listeners.length; i++) {
-        listeners[i].write("User " + username + " has joined.\r\n");
-      }
+
+      writeChatToListeners("User " + username + " has joined.\r\n");
     } else {
       //This is a message
       console.log(username + ": " + data.toString());
 
-      for (let i = 0; i < listeners.length; i++) {
-        listeners[i].write(username + ": " + data.toString() + "\r\n");
-      }
+      writeChatToListeners(data.toString(), username);
     }
   })
 
@@ -56,9 +75,7 @@ const server = net.createServer((socket) => {
       console.log("Removed listener. There are " + listeners.length + " listeners.")
     } else {
       console.log("User " + username + " has left.");
-      for (let i = 0; i < listeners.length; i++) {
-        listeners[i].write("User " + username + " has left.\r\n");
-      }
+      writeChatToListeners("User " + username + " has left.\r\n");
     }
   })
 
