@@ -1,4 +1,5 @@
 import socket
+import json
 
 HOST = '35.235.78.32'
 PORT = 4000
@@ -15,11 +16,20 @@ class Connection:
         self.out_file.write(message)
         self.out_file.flush()
 
-    def receive(self):
-        received = self.in_file.readline()[:-1]
-        print(received)
-        return received
 
+    def receive(self):
+        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+        if type(received) == str:
+            return received
+        print(type(received))
+        chat_data = json.loads(received)
+
+        reader.close()
+
+        return '\n'.join([chat["username"] + ": " + chat["message"] for chat in chat_data])
+
+    
+    
     def first_message(self, username):
         self.send('USER ' + username)
         return self.receive()

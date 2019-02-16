@@ -3,48 +3,59 @@
 
 import tkinter as tk
 
-mainbox = tk.Tk()
-mainbox.geometry("500x500")
+class gui():
+
+    def __init__(self):
+        
+        self.mainbox = tk.Tk()
+        self.mainbox.geometry("500x500")
 
 
-# text viewing window
-viewer = tk.Text(mainbox, height=2, width=30)
-viewer.place( x=10 , y=10 , width=360 , height=360 )
+        # text viewing window
+        self.viewer = tk.Text(self.mainbox, height=2, width=30)
+        self.viewer.place( x=10 , y=10 , width=360 , height=360 )
 
-#  scrollbar object
-scroller = tk.Scrollbar( mainbox )
-scroller.place( x=390 , y=10 , width=25 , height=360 )
-
-# syncs the scrollbar with the text window.
-scroller.config( command=viewer.yview )
-viewer.config( yscrollcommand=scroller.set )
+        #  scrollbar object
+        self.scroller = tk.Scrollbar( self.mainbox )
+        self.scroller.place( x=390 , y=10 , width=25 , height=360 )
 
 
-def get_message(event):
-    s = ENTRY.get()
-    if s != '':
-        ENTRY.delete(0, tk.END)
-        update(s)
-        return s
+        # entry box to input messages.
+        self.message_box = tk.Entry()
+        self.message_box.place( x=10 , y=400 , width=360 , height=30 )
+        
+        # button for sending messages
+        self.button = tk.Button( self.mainbox , text="Send Message" )
+        self.button.place( x=380 , y=400 , width=100 )
+        
 
-def update(message:str):
-        viewer.insert(tk.END , message)
-        viewer.insert(tk.END , '\n')
-        viewer.yview_moveto( 1 )
+        # syncs the scrollbar with the text window.
+        self.scroller.config( command=self.viewer.yview )
+        self.viewer.config( yscrollcommand=self.scroller.set )
+
+        # binds keyboard shortcuts to send messsage.
+        self.mainbox.bind('<Return>' , self.get_message_to_send)
+        self.button.bind('<Button-1>' , self.get_message_to_send)
+
+        self.mainbox.mainloop()
+     
+    
+    def get_message_to_send(self,event):
+        s = self.message_box.get()
+        if s != '':
+            self.message_box.delete(0, tk.END)
+            return s
+
+    def update(self, message:str):
+            self.viewer.insert(tk.END , message)
+            self.viewer.insert(tk.END , '\n')
+            self.viewer.yview_moveto( 1 )
 
 
-ENTRY = tk.Entry()
-ENTRY.place(x=10, y=400, width=360, height=30)
 
-
-button = tk.Button(mainbox, text="Send Message")
-button.place(x=380,y=400,width=100)
+   
+    
 
 
 
 
-mainbox.bind('<Return>', get_message)
-button.bind('<Button-1>', get_message)
-
-
-mainbox.mainloop()

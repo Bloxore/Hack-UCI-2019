@@ -1,7 +1,6 @@
 # Handles calls to both chat_input and chat_server
-import chat_input
 import chat_server
-
+import chat_gui
 
 
 def start_up(username):
@@ -14,11 +13,14 @@ def start_up(username):
 
 
 def main(username:str, da_connection: chat_server.Connection):
+    the_box = chat_gui.gui()
+    the_box.start()
     while True:
-        message = chat_input.chat()
+        message = the_box.get_message_to_send()
         if message == 'QUIT':
             break
         da_connection.send(message)
+        the_box.update(da_connection.receive())
 
     da_connection.close()
 
@@ -26,6 +28,6 @@ def main(username:str, da_connection: chat_server.Connection):
 
 
 if __name__ == "__main__":
-    name = chat_input.user_name()
+    name = input('Enter username: ')
     thing = start_up(name)
     main(name, thing)
