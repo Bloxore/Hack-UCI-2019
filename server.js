@@ -75,6 +75,11 @@ const server = net.createServer((socket) => {
         }
       }
       console.log("Removed listener. There are " + listeners.length + " listeners.")
+
+      if (listners.length == 0) {
+        console.log("There are no listeners left. Clearing chat history.");
+        messages = [];
+      }
     } else {
       console.log("User " + username + " has left.");
       writeChatToListeners("User " + username + " has left.\r\n");
