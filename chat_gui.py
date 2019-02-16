@@ -1,12 +1,15 @@
 ####   implement gui, use scroll and others from tkinter
 ####   combine chat and chatbox into one file.
 
+import chat_server
 import tkinter as tk
 
 class gui():
 
-    def __init__(self):
+    def __init__(self, da_connection):
         
+        self.connection = da_connection
+
         self.mainbox = tk.Tk()
         self.mainbox.geometry("500x500")
 
@@ -37,6 +40,8 @@ class gui():
         self.mainbox.bind('<Return>' , self.get_message_to_send)
         self.button.bind('<Button-1>' , self.get_message_to_send)
 
+            
+        self.message = ''
         self.mainbox.mainloop()
      
     
@@ -44,6 +49,8 @@ class gui():
         s = self.message_box.get()
         if s != '':
             self.message_box.delete(0, tk.END)
+            self.message = s
+            sendthing(s, self)
             return s
 
     def update(self, message:str):
@@ -52,6 +59,13 @@ class gui():
             self.viewer.yview_moveto( 1 )
 
 
+def sendthing(message, the_box):
+    if message == 'QUIT':
+        return
+    the_box.connection.send(message)
+    received = the_box.connection.receive()
+    the_box.update(received)
+    return received
 
    
     
