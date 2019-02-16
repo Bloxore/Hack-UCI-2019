@@ -7,7 +7,7 @@ import chat_server
 def start_up(username):
     da_connection = chat_server.create_connection_obj()
 
-    print(da_connection.first_message(username))
+    da_connection.first_message(username)
 
     return da_connection
 
