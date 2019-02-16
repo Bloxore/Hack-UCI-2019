@@ -26,6 +26,9 @@ const server = net.createServer((socket) => {
     else if (data.toString().split(" ")[0] == "USER") {
       username = data.toString().split(" ")[1];
       socket.write("WELCOME! " + username + "\r\n")
+      for (let i = 0; i < listeners.length; i++) {
+        listeners[i].write("User " + username + " has joined.");
+      }
     } else {
       //This is a message
       console.log(username + ": " + data.toString());
@@ -46,6 +49,9 @@ const server = net.createServer((socket) => {
       console.log("Removed listener. There are " + listeners.length + " listeners.")
     } else {
       console.log("User " + username + " has left.");
+      for (let i = 0; i < listeners.length; i++) {
+        listeners[i].write("User " + username + " has left.");
+      }
     }
   })
 
