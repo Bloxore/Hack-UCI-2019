@@ -17,11 +17,6 @@ class Connection:
 
 
 
-
-
-
-
-
 def create_connection_obj( host:str ='127.0.0.1', port:int = 3000)-> Connection:
     '''Constructs a Connection object.'''
     sock = socket.socket()
