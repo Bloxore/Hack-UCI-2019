@@ -1,6 +1,7 @@
 # Handles calls to both chat_input and chat_server
 import chat_server
 import chat_gui
+import chat_input
 
 
 def start_up(username):

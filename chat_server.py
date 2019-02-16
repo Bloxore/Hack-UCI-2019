@@ -18,9 +18,9 @@ class Connection:
 
 
     def receive(self):
-        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+        received = self.in_file.readline()     # Recieves JSON Data about stuff
         if type(received) == str:
-            return received
+            return received[:-1]
         print(type(received))
         chat_data = json.loads(received)
 
