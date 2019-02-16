@@ -13,7 +13,7 @@ def main(reader):
     while True:
         received = reader.receive() # Recieves JSON Data about stuff
 
-        chat_data = json.loads(receive)
+        chat_data = json.loads(received)
 
         for chat in chat_data:
             print(chat["username"] + ": " + chat["message"])
