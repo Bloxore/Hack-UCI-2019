@@ -24,7 +24,7 @@ const server = net.createServer((socket) => {
       listeners.push(socket);
     }
     else if (data.toString().split(" ")[0] == "USER") {
-      let userData = data.toString().split(" ")[1];
+      let userData = data.toString().split(" ");
       username = "";
       for (let i = 1; i< userData.length; i++) {
         username += userData[i];
