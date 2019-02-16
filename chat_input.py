@@ -1,4 +1,4 @@
-from PIL import Image
+import filetester
 
 def user_name():
     return input("Insert user name?:  ")
@@ -7,8 +7,7 @@ def chat():
 def emoji():
     return input("Insert an emoji: ")
 def picture():
-    img = Image.open(input("Insert an image: "))
-    img.show()
+    filetester.checker(input("Insert an image: "))
 def file():
     return input("Insert a file: ")
 def nickname():
