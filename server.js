@@ -38,13 +38,13 @@ const server = net.createServer((socket) => {
 
   console.log("client connected");
 
+  // Establish all users as listeners
+  socket.id = listenerID++;
+  socket.chat_type = "listener";
+  listeners.push(socket);
+
   socket.on("data", (data) => {
     if (data.toString().split(" ")[0] == "USER") {
-
-      // Establish all users as listeners
-      socket.id = listenerID++;
-      socket.chat_type = "listener";
-      listeners.push(socket);
 
 
       let userData = data.toString().split(" ");
