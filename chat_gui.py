@@ -42,13 +42,12 @@ class gui():
         self.mainbox.bind('<Return>' , self.get_message_to_send)
         self.button.bind('<Button-1>' , self.get_message_to_send)
         
-        self.update(self.connection.receive())
-        
-        self.message = ''
-        self.mainbox.mainloop()
-     
         while True:
             self.update(self.connection.receive())
+        
+            self.message = ''
+            self.mainbox.mainloop()
+     
     
     def get_message_to_send(self,event):
 
