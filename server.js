@@ -1,3 +1,5 @@
+'use strict';
+
 const net = require('net')
 
 const hostname = '35.235.78.32';
