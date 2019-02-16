@@ -39,7 +39,7 @@ const server = net.createServer((socket) => {
   socket.on("close", () => {
     if (socket.chat_type && socket.chat_type == "listener") {
       for (let i = 0; i < listeners.length; i++) {
-        if (listeners[i].id = socket.id) {
+        if (listeners[i].id == socket.id) {
           listeners.splice(i, 1);
         }
       }
