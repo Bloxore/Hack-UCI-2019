@@ -13,7 +13,9 @@ class Connection:
         self.out_file.flush()
 
     def receive(self):
-        return self.in_file.readline()[:-1]
+        received = self.in_file.readline()[:-1]
+        print(received)
+        return received
 
     def first_message(self, username:str = 'LISTENER'):
         if username  != 'LISTENER':
