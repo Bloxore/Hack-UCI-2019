@@ -1,14 +1,21 @@
-const http = require('http');
+const net = require('net')
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 3000
 
-http.createServer(function(request,response){
-  request.on("data", (msg) => {
-    response.write(msg);
-  });
+const server = net.createServer((socket) => {
 
-  request.on("end", () => {
-    response.end();
+  console.log("client connected");
+
+  socket.on("data", (data) => {
+    if (data.toString() == "LISTENER") {
+      // Don't establish user
+    }
+    else if (data.toString().split(" ")[0] == "USER") {
+      socket.write("WELCOME!\r\n")
+    }
   })
-}).listen(port, hostname);
+
+}).listen(port, hostname, () => {
+  console.log("Listening.")
+})
