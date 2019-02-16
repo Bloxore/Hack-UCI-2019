@@ -2,5 +2,5 @@
 import chat_input
 import chat_server
 
-if __main__ == "__name__":
+if __name__ == "__main__":
     pass
