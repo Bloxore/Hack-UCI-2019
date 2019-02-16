@@ -24,7 +24,7 @@ const server = net.createServer((socket) => {
       listeners.push(socket);
     }
     else if (data.toString().split(" ")[0] == "USER") {
-      username = data.toString().split(" ")[1];
+      username = data.toString().split(" ", 1)[1];
       socket.write("WELCOME! " + username + "\r\n")
       for (let i = 0; i < listeners.length; i++) {
         listeners[i].write("User " + username + " has joined.\r\n");
