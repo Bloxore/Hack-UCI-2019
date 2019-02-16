@@ -4,6 +4,8 @@ import socket
 class Connection:
     def __init__( self , sock )
         self.sock = sock
+        self.in_file = None
+        self.out_file = None
 
     def viewer_connection( self ):
         self.in_file = self.sock.makefile('r')
@@ -22,6 +24,13 @@ class Connection:
 
     def first_message(username:str):
         self.send('HELLO, I AM ' + username)
+
+    def close(self):
+        if self.in_file != None:
+            self.in_file.close()
+        if self.out_file != None:
+            self.out_file.close()
+        
 
 
 

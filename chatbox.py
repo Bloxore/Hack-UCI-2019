@@ -10,7 +10,12 @@ def _make_box():
 
 def main(reader):
     while True:
-        print(reader.receive())
+        received = reader.receive()
+        if received == '$#AS!@FE':
+            break
+        print(received)
+    reader.close()
+        
 
 
 
