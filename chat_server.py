@@ -2,7 +2,7 @@ import socket
 
 
 class Connection:
-    def __init__( self , sock )
+    def __init__( self , sock ):
         self.sock = sock
         self.out_file = self.sock.makefile('w')
         self.in_file = self.sock.makefile('r')
