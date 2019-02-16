@@ -1,7 +1,7 @@
 def user_name():
-    return input("What is your user name?:  ")
+    return input("Insert user name?:  ")
 def chat():
-    return input("What do you want to say?: ")
+    return input("Enter message: ")
 def emoji():
     return input("Insert an emoji: ")
 def picture():
@@ -9,4 +9,4 @@ def picture():
 def file():
     return input("Insert a file: ")
 def nickname():
-    return input("What is your nickname?: ")
+    return input("Insert nickname?: ")
