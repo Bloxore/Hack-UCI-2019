@@ -1,5 +1,4 @@
 # Handles calls to both chat_input and chat_server
-import chat_input
 import chat_server
 import chat_gui
 
@@ -28,6 +27,6 @@ def main(username:str, da_connection: chat_server.Connection):
 
 
 if __name__ == "__main__":
-    name = chat_input.user_name()
+    name = input('Enter username: ')
     thing = start_up(name)
     main(name, thing)
