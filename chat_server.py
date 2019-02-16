@@ -17,7 +17,7 @@ class Connection:
 
     def first_message(self, username:str = 'LISTENER'):
         if username  != 'LISTENER':
-            username = 'USER' + username
+            username = 'USER ' + username
         self.send(username)
         return self.receive()
 
