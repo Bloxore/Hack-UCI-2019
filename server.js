@@ -5,6 +5,8 @@ const port = 3000
 
 const server = net.createServer((socket) => {
 
+  let username = "Unknown";
+
   console.log("client connected");
 
   socket.on("data", (data) => {
@@ -12,7 +14,11 @@ const server = net.createServer((socket) => {
       // Don't establish user
     }
     else if (data.toString().split(" ")[0] == "USER") {
-      socket.write("WELCOME!\r\n")
+      username = data.toString().split(" ")[1];
+      socket.write("WELCOME! " + username + "\r\n")
+    } else {
+      //This is a message
+      console.log(username + ": " + data.toString());
     }
   })
 

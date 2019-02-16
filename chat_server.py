@@ -13,17 +13,18 @@ class Connection:
         self.out_file.flush()
 
     def receive(self):
-        return self.readline()[:-1]
+        return self.in_file.readline()[:-1]
 
-    def first_message(username:str):
-        self.send('HELLO, I AM ' + username)
+    def first_message(self, username:str):
+        self.send('USER ' + username)
+        return self.receive()
 
     def close(self):
         if self.in_file != None:
             self.in_file.close()
         if self.out_file != None:
             self.out_file.close()
-        
+
 
 
 

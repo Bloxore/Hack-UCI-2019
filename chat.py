@@ -7,10 +7,10 @@ import chat_server
 def start_up(username):
     da_connection = chat_server.create_connection_obj()
 
-    da_connection.first_message(username)
-    
+    print(da_connection.first_message(username))
+
     return da_connection
-    
+
 
 
 def main(username:str, da_connection: chat_server.Connection):
