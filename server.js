@@ -35,6 +35,14 @@ const server = net.createServer((socket) => {
     }
   })
 
+  socket.on("close", () => {
+    console.log("User " + username + " has left.");
+  })
+
+  socket.on("error", () => {
+    console.log("Something wack happened.");
+  })
+
 }).listen(port, hostname, () => {
   console.log("Listening.")
 })
