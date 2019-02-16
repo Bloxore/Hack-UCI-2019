@@ -16,14 +16,12 @@ class Connection:
         self.out_file.write(message)
         self.out_file.flush()
 
-    def _receive(self):
-        received = self.in_file.readline()[:-1]
-        print(received)
-        return received
 
     def receive(self):
-        received = self._receive() # Recieves JSON Data about stuff
-
+        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+        if type(received) == str:
+            return received
+        print(type(received))
         chat_data = json.loads(received)
 
         reader.close()

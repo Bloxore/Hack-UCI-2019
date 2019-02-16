@@ -14,12 +14,13 @@ def start_up(username):
 
 def main(username:str, da_connection: chat_server.Connection):
     the_box = chat_gui.gui()
+    the_box.start()
     while True:
         message = the_box.get_message_to_send()
         if message == 'QUIT':
             break
         da_connection.send(message)
-        the_box.update(chatbox.update(da_connection.receive()))
+        the_box.update(da_connection.receive())
 
     da_connection.close()
 
