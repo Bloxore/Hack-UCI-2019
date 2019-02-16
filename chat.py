@@ -14,6 +14,7 @@ def start_up(username):
 
 
 def main(username:str, da_connection: chat_server.Connection):
+    
     the_box = chat_gui.gui(da_connection)
 
     da_connection.close()

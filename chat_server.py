@@ -19,12 +19,12 @@ class Connection:
 
     def receive(self):
         received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
-            
+        if received == '':
+            return ''
         chat_data = json.loads(received)
             
         l = []
         for chat in chat_data:
-            print(chat["username"] + ": " + chat["message"])
             l.append(chat["username"] + ": " + chat["message"])
         return '\n'.join(l)
 

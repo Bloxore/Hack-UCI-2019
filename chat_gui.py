@@ -42,11 +42,11 @@ class gui():
         self.mainbox.bind('<Return>' , self.get_message_to_send)
         self.button.bind('<Button-1>' , self.get_message_to_send)
         
-        while True:
-            self.update(self.connection.receive())
         
-            self.message = ''
-            self.mainbox.mainloop()
+        self.message = ''
+
+        self.mainbox.after(100, self.reads)
+        self.mainbox.mainloop()
      
     
     def get_message_to_send(self,event):
@@ -59,6 +59,12 @@ class gui():
             sendthing(s, self)
                 
             return
+    def reads(self):
+        self.viewer.insert(tk.END , self.connection.receive())
+        self.viewer.insert(tk.END , '\n')
+        self.viewer.yview_moveto( 1 )
+        self.mainbox.after(100,update)
+
 
     def update(self, message:str):
             self.viewer.insert(tk.END , message)
