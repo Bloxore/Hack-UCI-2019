@@ -18,13 +18,10 @@ class Connection:
 
 
     def receive(self):
-        try:
-            received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
         
-        except UnicodeDecodeError:
-            received = '<Emoji>'
 
-        if received != 'E O F: EOF':    
+        if received != 'E O F: EOF' and received != '<Emoji>':    
                
             return '\n'.join([chat["username"] + ": " + chat["message"] for chat in json.loads(received)])
 
