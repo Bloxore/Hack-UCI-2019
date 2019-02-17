@@ -20,12 +20,14 @@ class Chat {
 
 function writeChatToListeners(message, username) {
   username = username || 'SERVER';
+  let rawOutput;
+  let chat;
 
   if (username != "E O F") {
-    let chat = new Chat(message, username);
+    chat = new Chat(message, username);
     messages.push(chat);
 
-    let rawOutput = JSON.stringify(messages);
+    rawOutput = JSON.stringify(messages);
   }
 
   for (let i = 0; i < listeners.length; i++) {
@@ -39,7 +41,7 @@ function writeChatToListeners(message, username) {
 
 setInterval(() => {
   writeChatToListeners("EOF", "E O F");
-}, 60);
+}, 200);
 
 const server = net.createServer((socket) => {
 
