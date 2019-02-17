@@ -80,7 +80,7 @@ const server = net.createServer((socket) => {
       }
       console.log("Removed listener. There are " + listeners.length + " listeners.")
 
-      if (listners.length == 0) {
+      if (listeners.length == 0) {
         console.log("There are no listeners left. Clearing chat history.");
         messages = [];
       }
