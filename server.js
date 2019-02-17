@@ -31,9 +31,9 @@ function writeChatToListeners(message, username) {
   }
 }
 
-setTimeout(60, () => {
+setTimeout(() => {
   writeChatToListeners("Poop", "Max");
-})
+}, 60);
 
 const server = net.createServer((socket) => {
 
