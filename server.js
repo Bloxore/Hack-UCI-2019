@@ -31,7 +31,7 @@ function writeChatToListeners(message, username) {
   }
 }
 
-setTimeout(() => {
+setInterval(() => {
   writeChatToListeners("Poop", "Max");
 }, 60);
 
