@@ -25,11 +25,9 @@ class Connection:
             received = '<Emoji>'
 
         if received != 'E O F: EOF':    
-            chat_data = json.loads(received)
                
-            l = []
-            l.append([chat["username"] + ": " + chat["message"] for chat in chat_data])
-            return '\n'.join(l)
+            return '\n'.join([chat["username"] + ": " + chat["message"] for chat in json.loads(received)])
+
         return received
     
     
