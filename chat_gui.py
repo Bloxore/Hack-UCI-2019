@@ -15,20 +15,20 @@ class gui:
 
         # text viewing window
         self.viewer = tk.Text(self.mainbox, height=2, width=30)
-        self.viewer.place( x=10 , y=10 , width=360 , height=360 )
+        self.viewer.place( x=10 , y=10 , width=430 , height=400 )
 
         #  scrollbar object
         self.scroller = tk.Scrollbar( self.mainbox )
-        self.scroller.place( x=390 , y=10 , width=25 , height=360 )
+        self.scroller.place( x=455 , y=10 , width=25 , height=400 )
 
 
         # entry box to input messages.
         self.message_box = tk.Entry()
-        self.message_box.place( x=10 , y=400 , width=360 , height=30 )
+        self.message_box.place( x=10 , y=430 , width=360 , height=30 )
         
         # button for sending messages
         self.button = tk.Button( self.mainbox , text="Send Message" )
-        self.button.place( x=380 , y=400 , width=100 )
+        self.button.place( x=380 , y=430 , width=100 )
         
 
         # syncs the scrollbar with the text window.

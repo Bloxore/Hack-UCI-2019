@@ -26,6 +26,6 @@ def main(username:str, da_connection: chat_server.Connection):
                                                                                 
 
 if __name__ == "__main__":
-    name = input('Enter username: ')
+    name = chat_input.user_name()
     thing = start_up(name)
     main(name, thing)

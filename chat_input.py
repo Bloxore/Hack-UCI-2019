@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 def user_name():
-    return input("Insert user name?:  ")
+    return input("Insert user name:  ")
 def chat():
     return input("Enter message: ")
 def emoji():
