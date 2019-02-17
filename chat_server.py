@@ -1,7 +1,7 @@
 import socket
 import json
 
-HOST = '35.235.78.32 '
+HOST = '35.235.78.32'
 PORT = 4000
 
 
