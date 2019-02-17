@@ -14,7 +14,7 @@ def start_up(username):
 
 
 
-def main(username:str, da_connection: chat_server.Connection):
+def main(da_connection: chat_server.Connection):
     
     try:
         the_box = chat_gui.gui(da_connection)
@@ -28,6 +28,4 @@ def main(username:str, da_connection: chat_server.Connection):
                                                                                 
 
 if __name__ == "__main__":
-    name = chat_input.user_name()
-    thing = start_up(name)
-    main(name, thing)
+    main(start_up(chat_input.user_name()))
