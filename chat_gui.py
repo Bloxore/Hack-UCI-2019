@@ -70,10 +70,12 @@ class gui:
 
 
     def u(self):
-        
-        self.viewer.insert(tk.END , message)
-        self.viewer.insert(tk.END , '\n')
-        self.viewer.yview_moveto( 1 )
+        k = self.connection.receive()
+        print(k)
+        if k != 'TEST: TEST':
+            self.viewer.insert(tk.END , k)
+            self.viewer.insert(tk.END , '\n')
+            self.viewer.yview_moveto( 1 )
 
 
 
