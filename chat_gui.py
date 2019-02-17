@@ -3,16 +3,15 @@
 
 import chat_server
 import tkinter as tk
+import time
 
-class gui():
+class gui:
 
     def __init__(self, da_connection):
-        
         self.connection = da_connection
-
+        
         self.mainbox = tk.Tk()
         self.mainbox.geometry("500x500")
-
 
         # text viewing window
         self.viewer = tk.Text(self.mainbox, height=2, width=30)
@@ -41,14 +40,16 @@ class gui():
         # binds keyboard shortcuts to send messsage.
         self.mainbox.bind('<Return>' , self.get_message_to_send)
         self.button.bind('<Button-1>' , self.get_message_to_send)
-        
+        self.queue = ''
         
         self.message = ''
-
-        self.mainbox.after(100, self.reads)
-        self.mainbox.mainloop()
+        
+        while True:
+            self.mainbox.update()
+            self.u()
      
-    
+
+
     def get_message_to_send(self,event):
 
         s = self.message_box.get()
@@ -59,15 +60,6 @@ class gui():
             sendthing(s, self)
                 
             return
-    def reads(self):
-        while True:
-            h = self.connection.receive()
-            if h == '':
-                return
-            self.viewer.insert(tk.END , h)
-            self.viewer.insert(tk.END , '\n')
-            self.viewer.yview_moveto( 1 )
-            self.mainbox.after(100,update)
 
 
     def update(self, message:str):
@@ -76,11 +68,18 @@ class gui():
             self.viewer.yview_moveto( 1 )
 
 
+
+    def u(self):
+        
+        self.viewer.insert(tk.END , message)
+        self.viewer.insert(tk.END , '\n')
+        self.viewer.yview_moveto( 1 )
+
+
+
 def sendthing(message, the_box):
     if message == 'QUIT':
         return
     the_box.connection.send(message)
-    received = the_box.connection.receive()
-    the_box.update(received)
 
-   
+
