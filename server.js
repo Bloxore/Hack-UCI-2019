@@ -28,12 +28,12 @@ function writeChatToListeners(message, username) {
 
   for (let i = 0; i < listeners.length; i++) {
     //listeners[i].write(rawOutput + "\r\n");
-    listeners[i].write("TEST" + "\r\n");
+    listeners[i].write(username + ": " + message + "\r\n");
   }
 }
 
 setInterval(() => {
-  writeChatToListeners("Poop", "Max");
+  writeChatToListeners("TEST", "TEST");
 }, 60);
 
 const server = net.createServer((socket) => {
