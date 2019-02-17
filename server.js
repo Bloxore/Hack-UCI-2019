@@ -27,7 +27,10 @@ function writeChatToListeners(message, username) {
   let rawOutput = JSON.stringify(messages);
 
   for (let i = 0; i < listeners.length; i++) {
-    listeners[i].write(rawOutput + "\r\n");
+    //listeners[i].write(rawOutput + "\r\n");
+
+    //DEBUG: Temp switch to single string output
+    listeners[i].write(username + ": " + message + "\r\n");
   }
 }
 
