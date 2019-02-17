@@ -41,7 +41,7 @@ function writeChatToListeners(message, username) {
 
 setInterval(() => {
   writeChatToListeners("EOF", "E O F");
-}, 200);
+}, 60);
 
 const server = net.createServer((socket) => {
 
