@@ -44,6 +44,8 @@ class Connection:
 
 def create_connection_obj()-> Connection:
     '''Constructs a Connection object.'''
+    
     sock = socket.socket()
     sock.connect( ( HOST , PORT ) )
+    
     return Connection( sock )

@@ -56,9 +56,8 @@ class gui:
         s = self.message_box.get()
         if s != '':
             self.message_box.delete(0, tk.END)
-            self.message = s
             
-            self.connection.send(message)
+            self.connection.send(s)
                 
             return
 
