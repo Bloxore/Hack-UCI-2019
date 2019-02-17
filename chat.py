@@ -4,6 +4,7 @@ import chat_gui
 import chat_input
 
 
+
 def start_up(username):
     da_connection = chat_server.create_connection_obj()
 
@@ -20,7 +21,8 @@ def main(username:str, da_connection: chat_server.Connection):
     da_connection.close()
 
 
-
+                                                                                
+                                                                                
 
 if __name__ == "__main__":
     name = input('Enter username: ')

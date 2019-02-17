@@ -18,16 +18,19 @@ class Connection:
 
 
     def receive(self):
-        received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
-        if received == '':
-            return ''
-        chat_data = json.loads(received)
+        received = self.in_file.readline()     # Recieves JSON Data about stuff
+        
+        t=[]
+        for receivedline in received:
+            chat_data = json.loads(received)
             
-        l = []
-        for chat in chat_data:
-            l.append(chat["username"] + ": " + chat["message"])
-        return '\n'.join(l)
-
+            l = []
+            for chat in chat_data:
+                l.append(chat["username"] + ": " + chat["message"]) 
+        t.append('\n'.join(l))
+        print(t)
+        return '\n'.join(t)
+        return received
     
     
     def first_message(self, username):
@@ -49,3 +52,7 @@ def create_connection_obj()-> Connection:
     sock = socket.socket()
     sock.connect( ( HOST , PORT ) )
     return Connection( sock )
+
+
+
+
