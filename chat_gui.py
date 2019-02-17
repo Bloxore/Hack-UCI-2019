@@ -31,7 +31,7 @@ class gui:
         self.button = tk.Button( self.mainbox , text="Send Message" )
         self.button.place( x=380 , y=430 , width=100 )
         
-
+        
         # syncs the scrollbar with the text window.
         self.scroller.config( command=self.viewer.yview )
         self.viewer.config( yscrollcommand=self.scroller.set )
@@ -74,6 +74,7 @@ class gui:
             self.viewer.insert(tk.END , k)
             self.viewer.insert(tk.END , '\n')
             self.viewer.yview_moveto( 1 )
+
 
 
 

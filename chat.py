@@ -8,7 +8,7 @@ import chat_input
 def start_up(username):
     da_connection = chat_server.create_connection_obj()
 
-    print(da_connection.first_message(username))
+    da_connection.first_message(username)
 
     return da_connection
 
@@ -16,10 +16,12 @@ def start_up(username):
 
 def main(username:str, da_connection: chat_server.Connection):
     
-    the_box = chat_gui.gui(da_connection)
+    try:
+        the_box = chat_gui.gui(da_connection)
+    except:
+        pass
 
     da_connection.close()
-    print('i closed the connection!')
 
 
                                                                                 
