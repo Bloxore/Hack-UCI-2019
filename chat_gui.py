@@ -28,8 +28,8 @@ class gui:
         self.message_box.place( x=10 , y=430 , width=360 , height=30 )
         
         # button for sending messages
-        self.button = tk.Button( self.mainbox , text="Send Message" )
-        self.button.place( x=380 , y=430 , width=100 )
+        self.sender = tk.Button( self.mainbox , text="Send Message" )
+        self.sender.place( x=380 , y=430 , width=100 )
         
         
         # syncs the scrollbar with the text window.
@@ -40,7 +40,7 @@ class gui:
 
         # binds keyboard shortcuts to send messsage.
         self.mainbox.bind('<Return>' , self.get_message_to_send)
-        self.button.bind('<Button-1>' , self.get_message_to_send)
+        self.sender.bind('<Button-1>' , self.get_message_to_send)
         self.queue = ''
         
         self.message = ''
@@ -58,7 +58,7 @@ class gui:
             self.message_box.delete(0, tk.END)
             self.message = s
             
-            sendthing(s, self)
+            self.connection.send(message)
                 
             return
 
@@ -74,13 +74,5 @@ class gui:
             self.viewer.insert(tk.END , k)
             self.viewer.insert(tk.END , '\n')
             self.viewer.yview_moveto( 1 )
-
-
-
-
-def sendthing(message, the_box):
-    if message == 'QUIT':
-        return
-    the_box.connection.send(message)
 
 
