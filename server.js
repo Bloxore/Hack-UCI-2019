@@ -82,6 +82,9 @@ const server = net.createServer((socket) => {
 
   socket.on("close", () => {
     if (socket.chat_type && socket.chat_type == "listener") {
+      console.log("User " + username + " has left.");
+      writeChatToListeners("User " + username + " has left.\r\n");
+
       for (let i = 0; i < listeners.length; i++) {
         if (listeners[i].id == socket.id) {
           listeners.splice(i, 1);
@@ -93,9 +96,6 @@ const server = net.createServer((socket) => {
         console.log("There are no listeners left. Clearing chat history.");
         messages = [];
       }
-    } else {
-      console.log("User " + username + " has left.");
-      writeChatToListeners("User " + username + " has left.\r\n");
     }
   })
 
