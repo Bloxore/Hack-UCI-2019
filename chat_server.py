@@ -19,6 +19,7 @@ class Connection:
 
     def receive(self):
         received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
+        print(type(received))
         if type(received) != str:
             t=[]
             for receivedline in received:

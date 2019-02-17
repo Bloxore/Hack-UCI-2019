@@ -62,12 +62,6 @@ class gui:
             return
 
 
-    def update(self, message:str):
-            self.viewer.insert(tk.END , message)
-            self.viewer.insert(tk.END , '\n')
-            self.viewer.yview_moveto( 1 )
-
-
 
     def u(self):
         k = self.connection.receive()
