@@ -20,15 +20,12 @@ class Connection:
     def receive(self):
         received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
         if received != 'E O F: EOF':    
-            t=[]
-            for receivedline in received:
-                chat_data = json.loads(received)
+            chat_data = json.loads(received)
                
-                l = []
-                for chat in chat_data:
-                    l.append(chat["username"] + ": " + chat["message"]) 
-            t.append('\n'.join(l))
-            return '\n'.join(t)
+            l = []
+            for chat in chat_data:
+                l.append(chat["username"] + ": " + chat["message"]) 
+            return '\n'.join(l)
         return received
     
     
