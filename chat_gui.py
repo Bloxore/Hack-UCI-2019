@@ -66,6 +66,7 @@ class gui:
     def u(self):
         k = self.connection.receive()
         if k != 'E O F: EOF':
+            self.viewer.delete('1.0', tk.END)
             
             self.viewer.insert(tk.END , k)
             self.viewer.insert(tk.END , '\n')
