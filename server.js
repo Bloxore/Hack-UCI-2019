@@ -1,6 +1,7 @@
 'use strict';
 
-const net = require('net')
+const net = require('net');
+const utf8 = require('utf8');
 
 const hostname = '10.168.0.2';
 //const hostname = 'localhost';
@@ -13,8 +14,8 @@ let messages = [];
 
 class Chat {
   constructor(message, username) {
-    this.message =  message;
-    this.username = username;
+    this.message =  utf8.encode(message);
+    this.username = utf8.encode(username);
   }
 }
 
