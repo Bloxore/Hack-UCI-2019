@@ -27,13 +27,16 @@ function writeChatToListeners(message, username) {
   let rawOutput = JSON.stringify(messages);
 
   for (let i = 0; i < listeners.length; i++) {
-    //listeners[i].write(rawOutput + "\r\n");
-    listeners[i].write(username + ": " + message + "\r\n");
+    if (username == "EOF") {
+      listeners[i].write(username + ": " + message + "\r\n"); //Raw text
+    } else {
+      listeners[i].write(rawOutput + "\r\n");
+    }
   }
 }
 
 setInterval(() => {
-  writeChatToListeners("TEST", "TEST");
+  writeChatToListeners("EOF", "EOF");
 }, 60);
 
 const server = net.createServer((socket) => {
