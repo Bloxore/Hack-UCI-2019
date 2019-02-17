@@ -28,7 +28,7 @@ class Connection:
             chat_data = json.loads(received)
                
             l = []
-            l.append([chat["username"] + ": " + chat["message"]) for chat in chat_data])
+            l.append([chat["username"] + ": " + chat["message"] for chat in chat_data])
             return '\n'.join(l)
         return received
     
