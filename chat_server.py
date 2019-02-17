@@ -19,8 +19,7 @@ class Connection:
 
     def receive(self):
         received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
-        print(type(received))
-        if type(received) != str:
+        if received != 'E O F: EOF':    
             t=[]
             for receivedline in received:
                 chat_data = json.loads(received)
@@ -29,7 +28,6 @@ class Connection:
                 for chat in chat_data:
                     l.append(chat["username"] + ": " + chat["message"]) 
             t.append('\n'.join(l))
-            print(t)
             return '\n'.join(t)
         return received
     
