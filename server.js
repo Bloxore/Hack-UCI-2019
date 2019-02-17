@@ -27,7 +27,7 @@ function writeChatToListeners(message, username) {
   let rawOutput = JSON.stringify(messages);
 
   for (let i = 0; i < listeners.length; i++) {
-    if (username == "EOF") {
+    if (username == "E O F") {
       listeners[i].write(username + ": " + message + "\r\n"); //Raw text
     } else {
       listeners[i].write(rawOutput + "\r\n");
@@ -36,7 +36,7 @@ function writeChatToListeners(message, username) {
 }
 
 setInterval(() => {
-  writeChatToListeners("EOF", "EOF");
+  writeChatToListeners("E O F", "EOF");
 }, 60);
 
 const server = net.createServer((socket) => {
