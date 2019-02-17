@@ -71,8 +71,7 @@ class gui:
 
     def u(self):
         k = self.connection.receive()
-        print(k)
-        if k != 'TEST: TEST':
+        if k != 'E O F: EOF':
             self.viewer.insert(tk.END , k)
             self.viewer.insert(tk.END , '\n')
             self.viewer.yview_moveto( 1 )
