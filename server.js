@@ -5,6 +5,8 @@ const utf8 = require('utf8');
 
 const hostname = '10.168.0.2';
 //const hostname = 'localhost';
+// Use localhost if server online is down.
+
 const port = 4000
 
 let listeners = [];
