@@ -22,14 +22,13 @@ class Connection:
             received = self.in_file.readline()[:-1]     # Recieves JSON Data about stuff
         
         except UnicodeDecodeError:
-            return '<Emoji>'
+            received = '<Emoji>'
 
         if received != 'E O F: EOF':    
             chat_data = json.loads(received)
                
             l = []
-            for chat in chat_data:
-                l.append(chat["username"] + ": " + chat["message"]) 
+            l.append([chat["username"] + ": " + chat["message"]) for chat in chat_data])
             return '\n'.join(l)
         return received
     
