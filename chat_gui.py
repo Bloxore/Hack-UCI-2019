@@ -12,6 +12,7 @@ class gui:
         
         self.mainbox = tk.Tk()
         self.mainbox.geometry("500x500")
+        self.mainbox.title("Abrupt Cow Chat")
 
         # text viewing window
         self.viewer = tk.Text(self.mainbox, height=2, width=30)
