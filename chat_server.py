@@ -1,7 +1,9 @@
 import socket
 import json
 
-HOST = '35.235.78.32'
+HOST = 'localhost'
+#HOST = '35.235.78.32'
+#change for google cloud server.
 PORT = 4000
 
 

@@ -4,6 +4,7 @@ const net = require('net');
 const utf8 = require('utf8');
 
 const hostname = '10.168.0.2';
+
 //const hostname = 'localhost';
 // Use localhost if server online is down.
 
