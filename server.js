@@ -3,9 +3,9 @@
 const net = require('net');
 const utf8 = require('utf8');
 
-const hostname = '10.168.0.2';
+//const hostname = '10.168.0.2';
 
-//const hostname = 'localhost';
+const hostname = 'localhost';
 // Use localhost if server online is down.
 
 const port = 4000
@@ -85,14 +85,14 @@ const server = net.createServer((socket) => {
 
   socket.on("close", () => {
     if (socket.chat_type && socket.chat_type == "listener") {
-      console.log("User " + username + " has left.");
-      writeChatToListeners("User " + username + " has left.\r\n");
 
       for (let i = 0; i < listeners.length; i++) {
         if (listeners[i].id == socket.id) {
           listeners.splice(i, 1);
         }
       }
+      console.log("User " + username + " has left.");
+      writeChatToListeners("User " + username + " has left.\r\n");
       console.log("Removed listener. There are " + listeners.length + " listeners.")
 
       if (listeners.length == 0) {
